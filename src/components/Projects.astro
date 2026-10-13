@@ -1,0 +1,29 @@
+---
+import ProjectCard from './ProjectCard.astro';
+import { portfolioData } from '../data/portfolio';
+const { projects } = portfolioData;
+---
+
+<section id="proyectos" class="py-20 md:py-28 border-t border-slate-200/60 dark:border-slate-800/60 relative">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Section Heading -->
+    <div class="space-y-3 mb-12 md:mb-16">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-indigo-50 dark:bg-indigo-950/60 border border-indigo-200 dark:border-indigo-800 text-xs font-semibold text-indigo-700 dark:text-indigo-300">
+        Portafolio
+      </div>
+      <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+        Proyectos Destacados
+      </h2>
+      <p class="text-base sm:text-lg text-slate-600 dark:text-slate-400 max-w-2xl">
+        Una selección de soluciones de software donde he diseñado y desarrollado tanto el frontend interactivo como la arquitectura y servicios backend.
+      </p>
+    </div>
+
+    <!-- Projects Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
+      {projects.map((project) => (
+        <ProjectCard project={project} />
+      ))}
+    </div>
+  </div>
+</section>

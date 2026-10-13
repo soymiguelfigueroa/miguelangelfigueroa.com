@@ -1,0 +1,78 @@
+---
+import { portfolioData } from '../data/portfolio';
+const { experience } = portfolioData;
+---
+
+<section id="experiencia" class="py-20 md:py-28 border-t border-slate-200/60 dark:border-slate-800/60 relative">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Section Heading -->
+    <div class="space-y-3 mb-12 md:mb-16">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-indigo-50 dark:bg-indigo-950/60 border border-indigo-200 dark:border-indigo-800 text-xs font-semibold text-indigo-700 dark:text-indigo-300">
+        Trayectoria
+      </div>
+      <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+        Experiencia Profesional
+      </h2>
+      <p class="text-base sm:text-lg text-slate-600 dark:text-slate-400 max-w-2xl">
+        Historial de impacto construyendo productos web y colaborando con equipos multidisciplinarios.
+      </p>
+    </div>
+
+    <!-- Timeline Container -->
+    <div class="relative border-l-2 border-indigo-200 dark:border-indigo-900/60 ml-3 sm:ml-6 space-y-12">
+      {experience.map((item) => (
+        <div class="relative pl-6 sm:pl-10">
+          <!-- Timeline Marker Circle -->
+          <div class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-white dark:bg-slate-950 border-4 border-indigo-600 dark:border-indigo-500"></div>
+
+          <!-- Experience Card -->
+          <div class="rounded-2xl border border-slate-200/80 dark:border-slate-800 bg-white dark:bg-slate-900/60 p-6 md:p-8 shadow-xs hover:border-slate-300 dark:hover:border-slate-700 transition-colors">
+            <!-- Header of Item -->
+            <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-3">
+              <div>
+                <h3 class="text-xl font-bold text-slate-900 dark:text-white tracking-tight">
+                  {item.role}
+                </h3>
+                <div class="text-sm font-semibold text-indigo-600 dark:text-indigo-400">
+                  {item.company} <span class="text-slate-400 dark:text-slate-500 font-normal">• {item.location}</span>
+                </div>
+              </div>
+              <span class="inline-flex items-center self-start sm:self-center px-3 py-1 rounded-full text-xs font-mono font-medium bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">
+                {item.period}
+              </span>
+            </div>
+
+            <!-- Description -->
+            <p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 mb-4 leading-relaxed">
+              {item.description}
+            </p>
+
+            <!-- Bullet Achievements -->
+            {item.achievements.length > 0 && (
+              <ul class="space-y-2 mb-6">
+                {item.achievements.map((achievement) => (
+                  <li class="flex items-start gap-2.5 text-sm text-slate-600 dark:text-slate-300">
+                    <svg class="w-4 h-4 text-indigo-500 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                    </svg>
+                    <span>{achievement}</span>
+                  </li>
+                ))}
+              </ul>
+            )}
+
+            <!-- Technologies used -->
+            <div class="flex flex-wrap items-center gap-1.5 pt-4 border-t border-slate-100 dark:border-slate-800">
+              <span class="text-xs font-medium text-slate-400 dark:text-slate-500 mr-1">Stack:</span>
+              {item.technologies.map((tech) => (
+                <span class="px-2 py-0.5 rounded text-xs font-mono bg-slate-100 dark:bg-slate-800/80 text-slate-600 dark:text-slate-400">
+                  {tech}
+                </span>
+              ))}
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
