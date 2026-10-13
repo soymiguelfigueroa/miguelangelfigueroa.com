@@ -66,7 +66,7 @@ export const portfolioData: PortfolioData = {
     linkedin: 'https://linkedin.com',
     availableForHire: true,
     availabilityStatus: 'Disponible para nuevos proyectos y contratación',
-    cvUrl: '/cv.pdf',
+    cvUrl: `${import.meta.env.BASE_URL.replace(/\/$/, '')}/cv.pdf`,
   },
   projects: [
     {
