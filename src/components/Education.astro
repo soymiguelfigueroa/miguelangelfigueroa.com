@@ -4,6 +4,7 @@ const { education } = portfolioData;
 
 const degrees = education.filter((item) => item.type === 'degree');
 const certifications = education.filter((item) => item.type === 'certification');
+const hasCertifications = certifications.length > 0;
 ---
 
 <section id="educacion" class="py-20 md:py-28 border-t border-slate-200/60 dark:border-slate-800/60 bg-slate-100/40 dark:bg-slate-900/30 relative">
@@ -11,96 +12,113 @@ const certifications = education.filter((item) => item.type === 'certification')
     <!-- Section Heading -->
     <div class="space-y-3 mb-12 md:mb-16">
       <div class="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-indigo-50 dark:bg-indigo-950/60 border border-indigo-200 dark:border-indigo-800 text-xs font-semibold text-indigo-700 dark:text-indigo-300">
-        Formación Continua
+        {hasCertifications ? 'Formación Continua' : 'Formación Académica'}
       </div>
       <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
-        Educación y Certificaciones
+        {hasCertifications ? 'Educación y Certificaciones' : 'Formación Académica'}
       </h2>
       <p class="text-base sm:text-lg text-slate-600 dark:text-slate-400 max-w-2xl">
-        Bases académicas sólidas y credenciales técnicas especializadas en tecnologías web e infraestructura.
+        {hasCertifications
+          ? 'Bases académicas universitarias y certificaciones técnicas especializadas en desarrollo backend, bases de datos, cloud e inteligencia artificial.'
+          : 'Bases académicas sólidas en ciencias de la computación, desarrollo de software e ingeniería de sistemas.'}
       </p>
     </div>
 
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-      <!-- Degrees Column -->
-      <div class="space-y-6">
-        <h3 class="text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2">
-          <svg class="w-5 h-5 text-indigo-600 dark:text-indigo-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-            <path d="M12 14l9-5-9-5-9 5 9 5z" />
-            <path d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" />
-          </svg>
-          <span>Educación Universitaria</span>
-        </h3>
+    <!-- Degrees Block -->
+    <div class="mb-14">
+      <h3 class="text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2 mb-6">
+        <svg class="w-5 h-5 text-indigo-600 dark:text-indigo-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path d="M12 14l9-5-9-5-9 5 9 5z" />
+          <path d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" />
+        </svg>
+        <span>Educación Universitaria</span>
+      </h3>
 
-        <div class="space-y-4">
-          {degrees.map((item) => (
-            <div class="rounded-2xl border border-slate-200/80 dark:border-slate-800 bg-white dark:bg-slate-900/60 p-6 shadow-xs">
-              <div class="flex items-start justify-between gap-2 mb-1">
-                <h4 class="font-bold text-slate-900 dark:text-white text-base">
-                  {item.degree}
-                </h4>
-                <span class="text-xs font-mono font-medium text-slate-500 dark:text-slate-400 shrink-0">
-                  {item.period}
-                </span>
-              </div>
-              <div class="text-sm font-medium text-indigo-600 dark:text-indigo-400 mb-2">
-                {item.institution}
-              </div>
-              {item.description && (
-                <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
-                  {item.description}
-                </p>
-              )}
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        {degrees.map((item) => (
+          <div class="rounded-2xl border border-slate-200/80 dark:border-slate-800 bg-white dark:bg-slate-900/60 p-6 md:p-7 shadow-xs">
+            <div class="flex items-start justify-between gap-3 mb-2">
+              <h4 class="font-bold text-slate-900 dark:text-white text-lg tracking-tight">
+                {item.degree}
+              </h4>
+              <span class="text-xs font-mono font-semibold px-2.5 py-0.5 rounded-full bg-indigo-50 dark:bg-indigo-950/70 text-indigo-600 dark:text-indigo-400 border border-indigo-200/60 dark:border-indigo-800/60 shrink-0">
+                {item.period}
+              </span>
             </div>
-          ))}
-        </div>
-      </div>
-
-      <!-- Certifications Column -->
-      <div class="space-y-6">
-        <h3 class="text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2">
-          <svg class="w-5 h-5 text-indigo-600 dark:text-indigo-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
-          </svg>
-          <span>Certificaciones Técnicas</span>
-        </h3>
-
-        <div class="space-y-4">
-          {certifications.map((item) => (
-            <div class="rounded-2xl border border-slate-200/80 dark:border-slate-800 bg-white dark:bg-slate-900/60 p-6 shadow-xs">
-              <div class="flex items-start justify-between gap-2 mb-1">
-                <h4 class="font-bold text-slate-900 dark:text-white text-base">
-                  {item.degree}
-                </h4>
-                <span class="text-xs font-mono font-medium text-slate-500 dark:text-slate-400 shrink-0">
-                  {item.period}
-                </span>
-              </div>
-              <div class="text-sm font-medium text-indigo-600 dark:text-indigo-400 mb-2">
-                {item.institution}
-              </div>
-              {item.description && (
-                <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-3">
-                  {item.description}
-                </p>
-              )}
-              {item.credentialUrl && (
-                <a
-                  href={item.credentialUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="inline-flex items-center gap-1.5 text-xs font-semibold text-indigo-600 dark:text-indigo-400 hover:underline"
-                >
-                  <span>Verificar credencial</span>
-                  <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                  </svg>
-                </a>
-              )}
+            <div class="text-sm font-semibold text-indigo-600 dark:text-indigo-400 mb-3">
+              {item.institution}
             </div>
-          ))}
-        </div>
+            {item.description && (
+              <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                {item.description}
+              </p>
+            )}
+          </div>
+        ))}
       </div>
     </div>
+
+    <!-- Certifications Block -->
+    {hasCertifications && (
+      <div>
+        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-6">
+          <h3 class="text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2">
+            <svg class="w-5 h-5 text-indigo-600 dark:text-indigo-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
+            </svg>
+            <span>Certificaciones Técnicas ({certifications.length})</span>
+          </h3>
+          <span class="text-xs text-slate-500 dark:text-slate-400">
+            Diplomas oficiales y credenciales verificadas en Platzi
+          </span>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-5">
+          {certifications.map((item) => (
+            <div class="group flex flex-col justify-between rounded-xl border border-slate-200/80 dark:border-slate-800 bg-white dark:bg-slate-900/60 p-5 shadow-xs hover:border-indigo-500/40 dark:hover:border-indigo-400/40 hover:-translate-y-0.5 hover:shadow-md transition-all duration-200">
+              <div>
+                <div class="flex items-center justify-between gap-2 mb-2">
+                  <span class="text-[11px] font-semibold px-2 py-0.5 rounded-md bg-emerald-50 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-300 border border-emerald-200/60 dark:border-emerald-800/60 inline-flex items-center gap-1">
+                    <svg class="w-3 h-3 text-emerald-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                    </svg>
+                    {item.institution}
+                  </span>
+                  <span class="text-[11px] font-mono text-slate-400 dark:text-slate-500">
+                    {item.period}
+                  </span>
+                </div>
+
+                <h4 class="font-bold text-slate-900 dark:text-white text-sm group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors leading-snug">
+                  {item.degree}
+                </h4>
+
+                {item.description && (
+                  <p class="mt-2 text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+                    {item.description}
+                  </p>
+                )}
+              </div>
+
+              {item.credentialUrl && (
+                <div class="pt-4 mt-3 border-t border-slate-100 dark:border-slate-800/80">
+                  <a
+                    href={item.credentialUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="inline-flex items-center gap-1 text-xs font-semibold text-indigo-600 dark:text-indigo-400 hover:text-indigo-700 dark:hover:text-indigo-300 group-hover:underline"
+                  >
+                    <span>Verificar credencial</span>
+                    <svg class="w-3.5 h-3.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                    </svg>
+                  </a>
+                </div>
+              )}
+            </div>
+          ))}
+        </div>
+      </div>
+    )}
   </div>
 </section>
